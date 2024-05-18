@@ -16,14 +16,14 @@ const contentToCache = [
 self.addEventListener('install', function (e) {
     console.log('[Service Worker] Install');
     
-// #if USE_DATA_CACHING
-//     e.waitUntil((async function () {
-//       const cache = await caches.open(cacheName);
-//       console.log('[Service Worker] Caching all: app shell and content');
-//       await cache.addAll(contentToCache);
-//     })());
-// #endif
-// });
+#if USE_DATA_CACHING
+    e.waitUntil((async function () {
+      const cache = await caches.open(cacheName);
+      console.log('[Service Worker] Caching all: app shell and content');
+      await cache.addAll(contentToCache);
+    })());
+#endif
+});
 
 #if USE_DATA_CACHING
 self.addEventListener('fetch', function (e) {
